@@ -1,0 +1,8 @@
+<launch>
+  <node name="joy_decision" pkg="joy" type="joy_node" output="screen"  respawn="true" />
+  <node name="decision" pkg="dsvp_launch" type="decision" output="screen"  respawn="true" />
+  <!--include file="$(find dsvp_launch)/launch/octomap.launch" /-->
+  <arg name="octomap_param_file" default="$(find dsvp_launch)/config/octomap2.yaml" />
+  <rosparam command="load" file="$(arg octomap_param_file)" />
+  <node name="octomap_decision" pkg="octomap_world" type="octomap_manager" output="screen"  respawn="true" />
+</launch>
